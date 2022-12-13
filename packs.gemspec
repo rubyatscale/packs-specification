@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
-  spec.name          = "packs"
-  spec.version       = '0.0.1'
+  spec.name          = 'packs'
+  spec.version       = '0.0.2'
   spec.authors       = ['Gusto Engineers']
   spec.email         = ['dev@gusto.com']
   spec.summary       = 'Packs are the specification for gradual modularization in the `rubyatscale` ecosystem.'
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   end
 
   # Specify which files should be added to the gem when it is released.
-  spec.files = Dir['README.md', 'sorbet/**/*', 'lib/**/*']
+  spec.files = Dir['README.md', 'lib/**/*']
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.6'
 
@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.2.16'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'sorbet'
   spec.add_development_dependency 'tapioca'
 end
