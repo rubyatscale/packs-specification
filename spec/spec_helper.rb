@@ -14,4 +14,27 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before do
+    Packs.bust_cache!
+    Packs.configure do |packs_config|
+      packs_config.roots = ['packs']
+    end
+  end
+
+  config.around do |example|
+    prefix = [File.basename($0), Process.pid].join('-') # rubocop:disable Style/SpecialGlobalVars
+    tmpdir = Dir.mktmpdir(prefix)
+    Dir.chdir(tmpdir) do
+      example.run
+    end
+  ensure
+    FileUtils.rm_rf(tmpdir)
+  end
+end
+
+def write_file(path, content = '')
+  pathname = Pathname.pwd.join(path)
+  FileUtils.mkdir_p(pathname.dirname)
+  pathname.write(content)
 end
