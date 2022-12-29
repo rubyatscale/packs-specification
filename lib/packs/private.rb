@@ -1,5 +1,7 @@
 # typed: strict
 
+require 'packs/private/configuration'
+
 module Packs
   module Private
     extend T::Sig
