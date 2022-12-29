@@ -49,6 +49,7 @@ module Packs
       # This is only a stop-gap to permit Stimpack users to more easily migrate
       # to packs.yml
       return if Private::Configuration::CONFIGURATION_PATHNAME.exist?
+
       yield(config)
     end
 

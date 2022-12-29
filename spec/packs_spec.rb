@@ -24,9 +24,9 @@ RSpec.describe Packs do
         write_file('packs/my_pack/package.yml')
         write_file('components/my_pack/package.yml')
         write_file('packs.yml', <<~YML)
-        pack_paths:
-          - packs/*
-          - components/*
+          pack_paths:
+            - packs/*
+            - components/*
         YML
       end
 
@@ -51,9 +51,9 @@ RSpec.describe Packs do
         write_file('components/my_pack/package.yml')
         write_file('packages/my_pack/package.yml')
         write_file('packs.yml', <<~YML)
-        pack_paths:
-          - packs/*
-          - components/*
+          pack_paths:
+            - packs/*
+            - components/*
         YML
         Packs.configure do |config|
           config.pack_paths = ['packs/*']
@@ -90,9 +90,9 @@ RSpec.describe Packs do
         write_file('packs/my_pack/package.yml')
         write_file('components/my_pack/package.yml')
         write_file('packs.yml', <<~YML)
-        pack_paths:
-          - packs/*
-          - components/*
+          pack_paths:
+            - packs/*
+            - components/*
         YML
       end
 

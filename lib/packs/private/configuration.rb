@@ -7,9 +7,9 @@ module Packs
       CONFIGURATION_PATHNAME = T.let(Pathname.new('packs.yml'), Pathname)
 
       DEFAULT_PACK_PATHS = T.let([
-        'packs/*',
-        'packs/*/*',
-      ], T::Array[String])
+                                   'packs/*',
+                                   'packs/*/*'
+                                 ], T::Array[String])
 
       prop :pack_paths, T::Array[String]
 
@@ -18,7 +18,7 @@ module Packs
         config_hash = CONFIGURATION_PATHNAME.exist? ? YAML.load_file(CONFIGURATION_PATHNAME) : {}
 
         new(
-          pack_paths: pack_paths(config_hash),
+          pack_paths: pack_paths(config_hash)
         )
       end
 
