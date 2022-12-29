@@ -3,7 +3,6 @@
 require 'yaml'
 require 'sorbet-runtime'
 require 'packs/pack'
-require 'packs/configuration'
 require 'packs/private'
 
 module Packs
@@ -38,6 +37,17 @@ module Packs
       @for_file = nil
     end
 
+    sig { returns(Private::Configuration) }
+    def config
+      @config = T.let(@config, T.nilable(Private::Configuration))
+      @config ||= Private::Configuration.fetch
+    end
+
+    sig { params(blk: T.proc.params(arg0: Private::Configuration).void).void }
+    def configure(&blk)
+      yield(config)
+    end
+
     private
 
     sig { returns(T::Hash[String, Pack]) }
@@ -56,12 +66,9 @@ module Packs
 
     sig { returns(T::Array[Pathname]) }
     def package_glob_patterns
-      config.roots.flat_map do |root|
-        absolute_root = Private.root.join(root)
-        [
-          *absolute_root.glob("*/#{PACKAGE_FILE}"),
-          *absolute_root.glob("*/*/#{PACKAGE_FILE}")
-        ]
+      absolute_root = Private.root
+      config.pack_paths.flat_map do |pack_path|
+        Pathname.glob(absolute_root.join(pack_path).join(PACKAGE_FILE))
       end
     end
   end

@@ -23,8 +23,22 @@ RSpec.describe Packs do
       before do
         write_file('packs/my_pack/package.yml')
         write_file('components/my_pack/package.yml')
+        write_file('packs.yml', <<~YML)
+        pack_paths:
+          - packs/*
+          - components/*
+        YML
+      end
+
+      it { expect(Packs.all.count).to eq 2 }
+    end
+
+    context 'in an app with a differently configured root configured via ruby' do
+      before do
+        write_file('packs/my_pack/package.yml')
+        write_file('components/my_pack/package.yml')
         Packs.configure do |config|
-          config.roots = %w[components packs]
+          config.pack_paths = ['packs/*', 'components/*']
         end
       end
 
@@ -55,9 +69,11 @@ RSpec.describe Packs do
       before do
         write_file('packs/my_pack/package.yml')
         write_file('components/my_pack/package.yml')
-        Packs.configure do |config|
-          config.roots = %w[components packs]
-        end
+        write_file('packs.yml', <<~YML)
+        pack_paths:
+          - packs/*
+          - components/*
+        YML
       end
 
       it { expect(Packs.find('packs/my_pack').name).to eq 'packs/my_pack' }

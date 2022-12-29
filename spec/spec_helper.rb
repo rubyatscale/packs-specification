@@ -17,9 +17,6 @@ RSpec.configure do |config|
 
   config.before do
     Packs.bust_cache!
-    Packs.configure do |packs_config|
-      packs_config.roots = ['packs']
-    end
   end
 
   config.around do |example|

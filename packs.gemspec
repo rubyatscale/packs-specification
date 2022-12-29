@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'packs'
-  spec.version       = '0.0.2'
+  spec.version       = '0.0.3'
   spec.authors       = ['Gusto Engineers']
   spec.email         = ['dev@gusto.com']
   spec.summary       = 'Packs are the specification for gradual modularization in the `rubyatscale` ecosystem.'
