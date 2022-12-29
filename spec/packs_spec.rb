@@ -44,6 +44,26 @@ RSpec.describe Packs do
 
       it { expect(Packs.all.count).to eq 2 }
     end
+
+    context 'in an app with a differently configured root configured via ruby and YML' do
+      before do
+        write_file('packs/my_pack/package.yml')
+        write_file('components/my_pack/package.yml')
+        write_file('packages/my_pack/package.yml')
+        write_file('packs.yml', <<~YML)
+        pack_paths:
+          - packs/*
+          - components/*
+        YML
+        Packs.configure do |config|
+          config.pack_paths = ['packs/*']
+        end
+      end
+
+      it 'prioritizes the YML configuration' do
+        expect(Packs.all.count).to eq 2
+      end
+    end
   end
 
   describe '.find' do
