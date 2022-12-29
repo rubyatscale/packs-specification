@@ -4,7 +4,7 @@ RSpec.describe Packs do
   describe '.all' do
     context 'in app with a simple package' do
       before do
-        write_file('packs/my_pack/package.yml')
+        write_pack('packs/my_pack')
       end
 
       it { expect(Packs.all.count).to eq 1 }
@@ -12,8 +12,8 @@ RSpec.describe Packs do
 
     context 'in an app with nested packs' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('packs/my_pack/subpack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('packs/my_pack/subpack')
       end
 
       it { expect(Packs.all.count).to eq 2 }
@@ -21,8 +21,8 @@ RSpec.describe Packs do
 
     context 'in an app with a differently configured root' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('components/my_pack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('components/my_pack')
         write_file('packs.yml', <<~YML)
           pack_paths:
             - packs/*
@@ -35,8 +35,8 @@ RSpec.describe Packs do
 
     context 'in an app with a differently configured root configured via ruby' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('components/my_pack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('components/my_pack')
         Packs.configure do |config|
           config.pack_paths = ['packs/*', 'components/*']
         end
@@ -47,9 +47,9 @@ RSpec.describe Packs do
 
     context 'in an app with a differently configured root configured via ruby and YML' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('components/my_pack/package.yml')
-        write_file('packages/my_pack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('components/my_pack')
+        write_pack('packages/my_pack')
         write_file('packs.yml', <<~YML)
           pack_paths:
             - packs/*
@@ -69,7 +69,7 @@ RSpec.describe Packs do
   describe '.find' do
     context 'in app with a simple package' do
       before do
-        write_file('packs/my_pack/package.yml')
+        write_pack('packs/my_pack')
       end
 
       it { expect(Packs.find('packs/my_pack').name).to eq 'packs/my_pack' }
@@ -77,8 +77,8 @@ RSpec.describe Packs do
 
     context 'in an app with nested packs' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('packs/my_pack/subpack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('packs/my_pack/subpack')
       end
 
       it { expect(Packs.find('packs/my_pack').name).to eq 'packs/my_pack' }
@@ -87,8 +87,8 @@ RSpec.describe Packs do
 
     context 'in an app with a differently configured root' do
       before do
-        write_file('packs/my_pack/package.yml')
-        write_file('components/my_pack/package.yml')
+        write_pack('packs/my_pack')
+        write_pack('components/my_pack')
         write_file('packs.yml', <<~YML)
           pack_paths:
             - packs/*
@@ -103,8 +103,8 @@ RSpec.describe Packs do
 
   describe '.for_file' do
     before do
-      write_file('packs/package_1/package.yml')
-      write_file('packs/package_1_new/package.yml')
+      write_pack('packs/package_1')
+      write_pack('packs/package_1_new')
     end
 
     context 'given a filepath in pack_1' do
@@ -129,9 +129,9 @@ RSpec.describe Packs do
 
     context 'in an app with nested packs' do
       before do
-        write_file('packs/my_pack/package.yml')
+        write_pack('packs/my_pack')
         write_file('packs/my_pack/file.rb')
-        write_file('packs/my_pack/subpack/package.yml')
+        write_pack('packs/my_pack/subpack')
         write_file('packs/my_pack/subpack/file.rb')
       end
 

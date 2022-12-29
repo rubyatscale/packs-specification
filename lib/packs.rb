@@ -1,6 +1,7 @@
 # typed: strict
 
 require 'yaml'
+require 'pathname'
 require 'sorbet-runtime'
 require 'packs/pack'
 require 'packs/private'
