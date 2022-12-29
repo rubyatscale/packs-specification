@@ -7,7 +7,6 @@ require 'packs/private'
 
 module Packs
   PACKAGE_FILE = T.let('package.yml'.freeze, String)
-  ROOTS = T.let(%w[packs components], T::Array[String])
 
   class << self
     extend T::Sig
@@ -45,6 +44,11 @@ module Packs
 
     sig { params(blk: T.proc.params(arg0: Private::Configuration).void).void }
     def configure(&blk)
+      # If packs.yml is being used, then ignore direct configuration.
+      # This is only a stop-gap to permit Stimpack users to more easily migrate
+      # to packs.yml
+      return if Private::Configuration::CONFIGURATION_PATHNAME.exist?
+
       yield(config)
     end
 
