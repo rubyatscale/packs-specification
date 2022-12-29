@@ -12,7 +12,6 @@ module Packs
       ], T::Array[String])
 
       prop :pack_paths, T::Array[String]
-      const :user_specified_pack_paths, T::Boolean
 
       sig { returns(Configuration) }
       def self.fetch
@@ -20,7 +19,6 @@ module Packs
 
         new(
           pack_paths: pack_paths(config_hash),
-          user_specified_pack_paths: !config_hash['pack_paths'].nil?
         )
       end
 

@@ -48,7 +48,7 @@ module Packs
       # If packs.yml is being used, then ignore direct configuration.
       # This is only a stop-gap to permit Stimpack users to more easily migrate
       # to packs.yml
-      return if config.user_specified_pack_paths
+      return if Private::Configuration::CONFIGURATION_PATHNAME.exist?
       yield(config)
     end
 
