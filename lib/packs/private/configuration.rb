@@ -9,7 +9,7 @@ module Packs
         'packs/*/*',
       ], T::Array[String])
 
-      const :pack_paths, T::Array[String]
+      prop :pack_paths, T::Array[String]
 
       sig { returns(Configuration) }
       def self.fetch

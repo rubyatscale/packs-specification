@@ -43,6 +43,11 @@ module Packs
       @config ||= Private::Configuration.fetch
     end
 
+    sig { params(blk: T.proc.params(arg0: Private::Configuration).void).void }
+    def configure(&blk)
+      yield(config)
+    end
+
     private
 
     sig { returns(T::Hash[String, Pack]) }

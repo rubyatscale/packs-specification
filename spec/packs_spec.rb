@@ -32,6 +32,18 @@ RSpec.describe Packs do
 
       it { expect(Packs.all.count).to eq 2 }
     end
+
+    context 'in an app with a differently configured root configured via ruby' do
+      before do
+        write_file('packs/my_pack/package.yml')
+        write_file('components/my_pack/package.yml')
+        Packs.configure do |config|
+          config.pack_paths = ['packs/*', 'components/*']
+        end
+      end
+
+      it { expect(Packs.all.count).to eq 2 }
+    end
   end
 
   describe '.find' do
