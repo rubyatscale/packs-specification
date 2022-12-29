@@ -8,6 +8,7 @@ RSpec.configure do |config|
     Packs.bust_cache!
   end
 
+  # Eventually, we could make this opt-in via metadata so someone can use this support without affecting all their tests.
   config.around do |example|
     prefix = [File.basename($0), Process.pid].join('-') # rubocop:disable Style/SpecialGlobalVars
     tmpdir = Dir.mktmpdir(prefix)
