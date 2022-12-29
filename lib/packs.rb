@@ -7,7 +7,6 @@ require 'packs/private'
 
 module Packs
   PACKAGE_FILE = T.let('package.yml'.freeze, String)
-  ROOTS = T.let(%w[packs components], T::Array[String])
 
   class << self
     extend T::Sig
