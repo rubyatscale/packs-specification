@@ -35,6 +35,11 @@ module Packs
       relative_path.basename.to_s
     end
 
+    sig { returns(T::Boolean) }
+    def is_gem?
+      @is_gem ||= T.let(relative_path.glob('*.gemspec').any?, T.nilable(T::Boolean))
+    end
+
     sig { returns(T::Hash[T.untyped, T.untyped]) }
     def metadata
       raw_hash['metadata'] || {}

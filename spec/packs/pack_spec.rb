@@ -43,4 +43,25 @@ RSpec.describe Packs::Pack do
       end
     end
   end
+
+  describe '.is_gem?' do
+    let(:subject) { Packs.find('packs/my_pack').is_gem? }
+
+    context 'pack is not a gem' do
+      before do
+        write_file('packs/my_pack/package.yml')
+      end
+
+      it { is_expected.to eq false }
+    end
+
+    context 'pack is a gem' do
+      before do
+        write_file('packs/my_pack/package.yml')
+        write_file('packs/my_pack/my_pack.gemspec')
+      end
+
+      it { is_expected.to eq true }
+    end
+  end
 end
