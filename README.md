@@ -14,3 +14,12 @@ Here are some example integrations with `packs`:
 
 # How is a pack different from a gem?
 A ruby [`gem`](https://guides.rubygems.org/what-is-a-gem/) is the Ruby community solution for packaging and distributing Ruby code. A gem is a great place to start new projects, and a great end state for code that's been extracted from an existing codebase. `packs` are intended to help gradually modularize an application that has some conceptual boundaries, but is not yet ready to be factored into gems.
+
+# Configuration
+By default, this library will look for `packs` in the folder `packs/*/package.yml` (as well as nested packs at `packs/*/*/package.yml`). To change where `packs` are located, create a `packs.yml` file:
+```
+pack_paths:
+  - "{packs,utilities,deprecated}/*" # packs with multiple roots!
+  - "{packs,utilities,deprecated}/*/*" # nested packs!
+  - gems/* # gems can be packs too!
+```
