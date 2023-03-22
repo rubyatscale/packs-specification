@@ -5,7 +5,7 @@ Welcome to `packs`! `packs` are a simple ruby specification for an extensible pa
 A `pack` (also called `package`) is a folder of Ruby code with a `package.yml` at the root that is intended to represent a well-modularized domain, and the rest of the [rubyatscale](https://github.com/rubyatscale) ecosystem is intended to help make the boundaries between a pack and any other more clear.
 
 Here are some example integrations with `packs`:
-- [`stimpack`](https://github.com/rubyatscale/stimpack) can be used to integrate `packs` into your `rails` application
+- [`packs-rails`](https://github.com/rubyatscale/packs-rails) can be used to integrate `packs` into your `rails` application
 - [`rubocop-packs`](https://github.com/rubyatscale/rubocop-packs) contains cops to improve boundaries around `packs` 
 - [`packwerk`](https://github.com/Shopify/packwerk) and [`packwerk-extensions`](https://github.com/rubyatscale/packwerk-extensions) help you describe and constrain your package graph in terms of dependencies between packs and pack public API
 - [`code_ownership`](https://github.com/rubyatscale/code_ownership) gives your application the capability to determine the owner of a pack
