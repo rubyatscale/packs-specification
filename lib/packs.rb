@@ -46,7 +46,7 @@ module Packs
     sig { params(blk: T.proc.params(arg0: Private::Configuration).void).void }
     def configure(&blk)
       # If packs.yml is being used, then ignore direct configuration.
-      # This is only a stop-gap to permit Stimpack users to more easily migrate
+      # This is only a stop-gap to permit packs-rails users to more easily migrate
       # to packs.yml
       return if Private::Configuration::CONFIGURATION_PATHNAME.exist?
 
