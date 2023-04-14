@@ -7,8 +7,7 @@ module Packs
       CONFIGURATION_PATHNAME = T.let(Pathname.new('packs.yml'), Pathname)
 
       DEFAULT_PACK_PATHS = T.let([
-                                   'packs/*',
-                                   'packs/*/*'
+                                   'packs/**/*',
                                  ], T::Array[String])
 
       prop :pack_paths, T::Array[String]

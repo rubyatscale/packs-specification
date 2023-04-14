@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    packs (0.0.6)
+    packs (0.0.7)
       sorbet-runtime
 
 GEM

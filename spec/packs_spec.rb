@@ -99,6 +99,16 @@ RSpec.describe Packs do
       it { expect(Packs.find('packs/my_pack').name).to eq 'packs/my_pack' }
       it { expect(Packs.find('components/my_pack').name).to eq 'components/my_pack' }
     end
+
+    context 'in an app with packs with different depth' do
+      before do
+        write_pack('packs/my_pack')
+        write_pack('packs/subject/other_pack')
+        write_pack('packs/other_subject/small_subject/deep_pack')
+      end
+
+      it { expect(Packs.all.count).to eq 3 }
+    end
   end
 
   describe '.for_file' do
