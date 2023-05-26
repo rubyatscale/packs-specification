@@ -10,6 +10,18 @@ RSpec.describe Packs do
       it { expect(Packs.all.count).to eq 1 }
     end
 
+    context 'given two package names with a common root' do
+      before do
+        write_pack('packs/my_pack')
+        write_pack('packs/z_pack_with_very_long_name')
+        write_pack('packs/first_pack')
+      end
+
+      it 'preserves lexical order' do
+        expect(Packs.all.map(&:name)).to eq %w[packs/first_pack packs/my_pack packs/z_pack_with_very_long_name]
+      end
+    end
+
     context 'in an app with nested packs' do
       before do
         write_pack('packs/my_pack')

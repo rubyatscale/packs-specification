@@ -27,7 +27,8 @@ module Packs
       path_string = file_path.to_s
       @for_file = T.let(@for_file, T.nilable(T::Hash[String, T.nilable(Pack)]))
       @for_file ||= {}
-      @for_file[path_string] ||= all.find { |package| path_string.start_with?("#{package.name}/") || path_string == package.name }
+      @for_file[path_string] ||= all.sort_by { |package| -package.name.length }
+        .find { |package| path_string.start_with?("#{package.name}/") || path_string == package.name }
     end
 
     sig { void }
@@ -63,9 +64,7 @@ module Packs
           Pack.from(path)
         end
 
-        # We want to match more specific paths first so for_file works correctly.
-        sorted_packages = all_packs.sort_by { |package| -package.name.length }
-        sorted_packages.to_h { |p| [p.name, p] }
+        all_packs.to_h { |p| [p.name, p] }
       end
     end
 
