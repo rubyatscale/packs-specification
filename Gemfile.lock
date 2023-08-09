@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    packs (0.0.6)
+    packs-specification (0.0.1)
       sorbet-runtime
 
 GEM
@@ -101,7 +101,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.2.16)
-  packs!
+  packs-specification!
   rake
   rspec (~> 3.0)
   rubocop
