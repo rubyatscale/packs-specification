@@ -3,15 +3,15 @@ Gem::Specification.new do |spec|
   spec.version       = '0.0.1'
   spec.authors       = ['Gusto Engineers']
   spec.email         = ['dev@gusto.com']
-  spec.summary       = 'Packs are the specification for gradual modularization in the `rubyatscale` ecosystem.'
-  spec.description   = 'Packs are the specification for gradual modularization in the `rubyatscale` ecosystem.'
-  spec.homepage      = 'https://github.com/rubyatscale/packs'
+  spec.summary       = 'The specification for packs in the `rubyatscale` ecosystem.'
+  spec.description   = 'The specification for packs in the `rubyatscale` ecosystem.'
+  spec.homepage      = 'https://github.com/rubyatscale/packs-specification'
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)
     spec.metadata['homepage_uri'] = spec.homepage
-    spec.metadata['source_code_uri'] = 'https://github.com/rubyatscale/packs'
-    spec.metadata['changelog_uri'] = 'https://github.com/rubyatscale/packs/releases'
+    spec.metadata['source_code_uri'] = 'https://github.com/rubyatscale/packs-specification'
+    spec.metadata['changelog_uri'] = 'https://github.com/rubyatscale/packs-specification/releases'
     spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   else
     raise 'RubyGems 2.0 or newer is required to protect against ' \
