@@ -1,6 +1,6 @@
-# packs
+# packs-specification
 
-Welcome to `packs`! `packs` are a simple ruby specification for an extensible packaging system to help modularize Ruby applications.
+Welcome to `packs-specification`! `packs` are a simple ruby specification for an extensible packaging system to help modularize Ruby applications.
 
 A `pack` (short for `package`) is a folder of Ruby code with a `package.yml` at the root that is intended to represent a well-modularized domain, and the rest of the [rubyatscale](https://github.com/rubyatscale) ecosystem is intended to help make the boundaries between a pack and any other more clear.
 
