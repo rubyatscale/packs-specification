@@ -1,6 +1,6 @@
 # typed: strict
 
-require 'packs/private/configuration'
+require 'packs/specification/private/configuration'
 
 module Packs
   module Private
