@@ -5,7 +5,7 @@ RSpec.configure do |config|
 
   config.before do
     # We bust_cache always because each test may write its own packs
-    Packs.bust_cache!
+    Packs::Specification.bust_cache!
   end
 
   # Eventually, we could make this opt-in via metadata so someone can use this support without affecting all their tests.

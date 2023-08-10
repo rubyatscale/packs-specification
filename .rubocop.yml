@@ -116,3 +116,7 @@ Style/NumericPredicate:
 
 Layout/BlockEndNewline:
   Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - lib/packs-specification.rb
