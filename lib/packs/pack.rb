@@ -13,7 +13,7 @@ module Packs
     def self.from(package_yml_absolute_path)
       package_loaded_yml = YAML.load_file(package_yml_absolute_path)
       path = package_yml_absolute_path.dirname
-      relative_path = path.relative_path_from(Private.root)
+      relative_path = path.relative_path_from(Specification.root)
       package_name = relative_path.cleanpath.to_s
 
       Pack.new(
@@ -36,7 +36,7 @@ module Packs
     end
 
     sig { returns(T::Boolean) }
-    def is_gem?
+    def is_gem? # rubocop:disable Naming/PredicateName
       @is_gem ||= T.let(relative_path.glob('*.gemspec').any?, T.nilable(T::Boolean))
     end
 

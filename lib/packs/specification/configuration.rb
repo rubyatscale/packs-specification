@@ -1,7 +1,7 @@
 # typed: strict
 
 module Packs
-  module Private
+  module Specification
     class Configuration < T::Struct
       extend T::Sig
       CONFIGURATION_PATHNAME = T.let(Pathname.new('packs.yml'), Pathname)
