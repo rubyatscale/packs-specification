@@ -54,22 +54,14 @@ GEM
     rubocop-ast (1.24.0)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
-    sorbet (0.5.10479)
-      sorbet-static (= 0.5.10479)
-    sorbet-runtime (0.5.10479)
-    sorbet-static (0.5.10479-universal-darwin-14)
-    sorbet-static (0.5.10479-universal-darwin-15)
-    sorbet-static (0.5.10479-universal-darwin-16)
-    sorbet-static (0.5.10479-universal-darwin-17)
-    sorbet-static (0.5.10479-universal-darwin-18)
-    sorbet-static (0.5.10479-universal-darwin-19)
-    sorbet-static (0.5.10479-universal-darwin-20)
-    sorbet-static (0.5.10479-universal-darwin-21)
-    sorbet-static (0.5.10479-universal-darwin-22)
-    sorbet-static (0.5.10479-x86_64-linux)
-    sorbet-static-and-runtime (0.5.10479)
-      sorbet (= 0.5.10479)
-      sorbet-runtime (= 0.5.10479)
+    sorbet (0.5.11370)
+      sorbet-static (= 0.5.11370)
+    sorbet-runtime (0.5.11370)
+    sorbet-static (0.5.11370-universal-darwin)
+    sorbet-static (0.5.11370-x86_64-linux)
+    sorbet-static-and-runtime (0.5.11370)
+      sorbet (= 0.5.11370)
+      sorbet-runtime (= 0.5.11370)
     spoom (1.1.12)
       sorbet (>= 0.5.9204)
       sorbet-runtime (>= 0.5.9204)
@@ -97,7 +89,8 @@ GEM
       yard (>= 0.9)
 
 PLATFORMS
-  ruby
+  universal-darwin
+  x86_64-linux
 
 DEPENDENCIES
   bundler (~> 2.2.16)
@@ -109,4 +102,4 @@ DEPENDENCIES
   tapioca
 
 BUNDLED WITH
-   2.2.33
+   2.2.34
