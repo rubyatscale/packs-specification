@@ -2,14 +2,5 @@
 #   srb rbi todo
 
 # typed: strong
+
 module ::RSpec; end
-class Pathname
-  sig do
-    params(
-      p1: T::Array[T.any(String, Pathname)],
-      p2: T.nilable(Integer)
-    )
-    .returns(T::Array[Pathname])
-  end
-  def glob(p1, p2 = nil); end
-end
