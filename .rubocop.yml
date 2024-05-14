@@ -13,6 +13,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - vendor/bundle/**/**
+  TargetRubyVersion: 2.6
 
 Metrics/ParameterLists:
   Enabled: false
@@ -120,3 +121,7 @@ Layout/BlockEndNewline:
 Naming/FileName:
   Exclude:
     - lib/packs-specification.rb
+
+Gemspec/DevelopmentDependencies:
+  Enabled: true
+  EnforcedStyle: gemspec
