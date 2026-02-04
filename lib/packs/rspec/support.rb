@@ -1,3 +1,5 @@
+require 'fileutils'
+require 'tmpdir'
 require_relative 'fixture_helper'
 
 RSpec.configure do |config|

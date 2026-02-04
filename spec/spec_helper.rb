@@ -2,7 +2,7 @@
 
 require 'bundler/setup'
 require 'packs-specification'
-require 'pry'
+require 'debug'
 
 require 'packs/rspec/support'
 

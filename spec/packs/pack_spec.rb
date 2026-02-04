@@ -44,6 +44,65 @@ RSpec.describe Packs::Pack do
     end
   end
 
+  describe 'lazy loading' do
+    before do
+      write_file('packs/my_pack/package.yml', <<~CONTENTS)
+        enforce_privacy: true
+        metadata:
+          owner: MyTeam
+      CONTENTS
+    end
+
+    let(:pack) { Packs::Pack.from(Pathname.pwd.join('packs/my_pack/package.yml')) }
+
+    it 'does not load raw_hash until accessed' do
+      expect(pack.instance_variable_get(:@raw_hash)).to be_nil
+    end
+
+    it 'loads raw_hash when accessed' do
+      pack.raw_hash
+      expect(pack.instance_variable_get(:@raw_hash)).to eq({ 'enforce_privacy' => true, 'metadata' => { 'owner' => 'MyTeam' } })
+    end
+
+    it 'loads raw_hash when metadata is accessed' do
+      pack.metadata
+      expect(pack.instance_variable_get(:@raw_hash)).not_to be_nil
+    end
+  end
+
+  describe '#inspect' do
+    before do
+      write_file('packs/my_pack/package.yml', <<~CONTENTS)
+        enforce_privacy: true
+      CONTENTS
+    end
+
+    let(:pack) { Packs::Pack.from(Pathname.pwd.join('packs/my_pack/package.yml')) }
+
+    it 'only includes @name in inspect output' do
+      expect(pack.inspect).to match(/^#<Packs::Pack:0x[0-9a-f]+ @name="packs\/my_pack">$/)
+    end
+
+    it 'does not include other instance variables in inspect output' do
+      expect(pack.inspect).not_to include('@path')
+      expect(pack.inspect).not_to include('@relative_path')
+      expect(pack.inspect).not_to include('@raw_hash')
+    end
+  end
+
+  describe '#instance_variables_to_inspect', if: RUBY_VERSION >= '4' do
+    before do
+      write_file('packs/my_pack/package.yml')
+    end
+
+    let(:pack) { Packs::Pack.from(Pathname.pwd.join('packs/my_pack/package.yml')) }
+
+    it 'is respected by Kernel#inspect' do
+      expect(pack.inspect).to include('@name=')
+      expect(pack.inspect).not_to include('@path=')
+    end
+  end
+
   describe '.is_gem?' do
     let(:subject) { Packs.find('packs/my_pack').is_gem? }
 
