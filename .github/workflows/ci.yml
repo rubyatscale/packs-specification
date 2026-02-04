@@ -7,6 +7,48 @@ on:
   pull_request:
 
 jobs:
-  call-workflow-from-shared-config:
-    uses: rubyatscale/shared-config/.github/workflows/ci.yml@main
-    secrets: inherit
+  rspec:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby:
+          - 3.2
+          - 3.3
+          - 3.4
+          - 4.0
+    name: "RSpec tests: Ruby ${{ matrix.ruby }}"
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+      - name: Run tests
+        run: bundle exec rspec
+  static_type_check:
+    name: "Type Check"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: 3.3
+      - name: Run static type checks
+        run: bundle exec srb tc
+  notify_on_failure:
+    runs-on: ubuntu-latest
+    needs: [rspec, static_type_check]
+    if: ${{ failure() && github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: slackapi/slack-github-action@v2.1.0
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            {
+              "text": "${{ github.repository }}/${{ github.ref }}: FAILED\n${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            }
