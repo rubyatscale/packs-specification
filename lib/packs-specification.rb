@@ -1,4 +1,5 @@
 # typed: strict
+# frozen_string_literal: true
 
 require 'yaml'
 require 'pathname'
@@ -10,7 +11,7 @@ require 'packs/specification'
 # because this allows a production environment to require `packs-specification` only and get some simple functionality, without
 # needing to load all of `packs`.
 module Packs
-  PACKAGE_FILE = T.let('package.yml'.freeze, String)
+  PACKAGE_FILE = T.let('package.yml', String)
 
   class << self
     extend T::Sig
